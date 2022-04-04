@@ -41,6 +41,36 @@ This script provides an automatic versioning system for Arduino sketches based o
      recipe.hooks.sketch.prebuild.1.pattern=/path/to/arduino-workspace/tools/git-version.sh "{build.source.path}/src" "{build.path}/sketch/src"
      ```
 
+## Installation (python version)
+  
+I have some problems in windows with the bash version, when building Arduino simply opened the .sh file to edit and din't execute it.
+
+Instead of spend time debugging it, I created a python version that works fine in Windows 11.
+
+  1. Install python (in windows)
+     ```
+     https://www.python.org/
+     ```
+
+  2. **On Linux**, make script executable:  
+     ```
+     cd /path/to/arduino-workspace/tools/git-describe-arduino
+     chmod 755 git-version.py
+     ```
+    
+     (no need to modify global path)  
+     
+     **On Window**, add folder to global path (https://www.computerhope.com/issues/ch000549.htm) or you could also copy it to you bin folder.
+
+  3. Add this script to prebuild hooks of Arduino toolchain. Created if not exist the file `platform.txt` inside `/path/to/arduino-application/hardware/`. On Windows, append the following line:  
+     ```
+     recipe.hooks.sketch.prebuild.1.pattern=git-version.bat "{build.source.path}/src" "{build.path}/sketch/src"
+     ```  
+     On Mac/Linux, append the following line:  
+     ```
+     recipe.hooks.sketch.prebuild.1.pattern=/path/to/arduino-workspace/tools/git-version.sh "{build.source.path}/src" "{build.path}/sketch/src"
+     ```
+
 ## Usage
 
 To configure your sketch you need to complete few steps:

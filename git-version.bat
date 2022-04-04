@@ -1,1 +1,1 @@
-git-version.sh %1 %2
+git-version.py %1 %2
