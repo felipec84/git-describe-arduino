@@ -62,6 +62,18 @@ Instead of spend time debugging it, I created a python version that works fine i
      
      **On Window**, add folder to global path (https://www.computerhope.com/issues/ch000549.htm) or you could also copy it to you bin folder.
 
+     I have a problem when after a reboot windows didn't want to run the python file and it tried to open it with my editor, it was working before so my guess is that some part of windows disable the script execution, in order to fix this I used 'pyinstaller'  in order to have an .exe file from my .py:
+
+     ```
+     cd \path\to\arduino-workspace\tools\git-describe-arduino
+     python -m pip install pyinstaller
+     pyinstaller.exe .\git-version.py --onefile
+     cp .\dist\pyinstaller.exe ${HOME}\bin\
+     ```
+
+     Finaly change pyinstaller.py for pyinstaller.exe in pyinstaller.bat
+
+
   3. Add this script to prebuild hooks of Arduino toolchain. Created if not exist the file `platform.txt` inside `/path/to/arduino-application/hardware/`. On Windows, append the following line:  
      ```
      recipe.hooks.sketch.prebuild.1.pattern=git-version.bat "{build.source.path}/src" "{build.path}/sketch/src"
